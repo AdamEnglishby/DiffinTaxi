@@ -7,12 +7,12 @@ namespace Adam.Runtime.Input
     public abstract class InputHandler : MonoBehaviour
     {
 
-        protected InputState Input;
-        public InputState GetInput => Input;
+        public InputState input;
 
         [Serializable]
         public struct InputState
         {
+            public Camera cam;
             public Vector2 moveInput;
         }
 

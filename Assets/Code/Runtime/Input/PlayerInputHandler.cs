@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Adam.Runtime.Input
@@ -7,8 +8,15 @@ namespace Adam.Runtime.Input
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerInputHandler : InputHandler
     {
-        
-        public void OnMove(InputValue value) => Input.moveInput = value.Get<Vector2>();
+
+        [SerializeField] public Camera cam;
+
+        private void Awake()
+        {
+            input.cam = cam;
+        }
+
+        public void OnMove(InputValue value) => input.moveInput = value.Get<Vector2>();
 
     }
     

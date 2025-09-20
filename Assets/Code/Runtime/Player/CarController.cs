@@ -14,13 +14,14 @@ namespace Adam.Runtime.Player
         [SerializeField] private Transform meshRoot;
         [SerializeField] private List<VisualEffect> smokeVfx;
         
-        [SerializeField] private float moveForceScalar = 50f;
-        [SerializeField] private float maxSpeed = 5f;
+        [SerializeField] private float moveForceScalar = 15f;
+        [SerializeField] private float maxSpeed = 10f;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private Vector3 meshOffset = new(0, -0.5f, 0);
         [SerializeField] private AnimationCurve forceByAngleCurve;
-        [SerializeField] private float smokeAngleThreshold = 20f;
+        [SerializeField] private float smokeAngleThreshold = 10f;
         [SerializeField] private float smokeSpeedThreshold;
+        [SerializeField] private VisualEffect exhaustVfx;
 
         private Rigidbody _rigidbody;
         private Vector3 _lastMovementInput;
@@ -35,11 +36,25 @@ namespace Adam.Runtime.Player
                 visualEffect.gameObject.SetActive(true);
                 visualEffect.Stop();
             }
+            exhaustVfx.gameObject.SetActive(true);
         }
 
         private void FixedUpdate()
         {
-            var worldSpaceInput = new Vector3(inputHandler.GetInput.moveInput.x, 0, inputHandler.GetInput.moveInput.y);
+            var moveInput = inputHandler.input.moveInput;
+            var camTransform = inputHandler.input.cam.transform;
+
+            var camForward = camTransform.forward;
+            var camRight = camTransform.right;
+
+            camForward.y = 0;
+            camRight.y = 0;
+
+            camForward = camForward.normalized;
+            camRight = camRight.normalized;
+
+            var worldSpaceInput = (camForward * moveInput.y + camRight * moveInput.x);
+            
             if (worldSpaceInput.magnitude > 0.01f)
             {
                 _lastMovementInput = worldSpaceInput;
