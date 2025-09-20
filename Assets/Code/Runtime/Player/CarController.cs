@@ -1,0 +1,82 @@
+﻿using System.Collections.Generic;
+using Adam.Runtime.Input;
+using UnityEngine;
+using UnityEngine.VFX;
+
+namespace Adam.Runtime.Player
+{
+    
+    [RequireComponent(typeof(Rigidbody))]
+    public class CarController : MonoBehaviour
+    {
+
+        [SerializeField] private InputHandler inputHandler;
+        [SerializeField] private Transform meshRoot;
+        [SerializeField] private List<VisualEffect> smokeVfx;
+        
+        [SerializeField] private float moveForceScalar = 50f;
+        [SerializeField] private float maxSpeed = 5f;
+        [SerializeField] private float rotationSpeed = 10f;
+        [SerializeField] private Vector3 meshOffset = new(0, -0.5f, 0);
+        [SerializeField] private AnimationCurve forceByAngleCurve;
+        [SerializeField] private float smokeAngleThreshold = 20f;
+        [SerializeField] private float smokeSpeedThreshold;
+
+        private Rigidbody _rigidbody;
+        private Vector3 _lastMovementInput;
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.maxLinearVelocity = maxSpeed;
+            
+            foreach (var visualEffect in smokeVfx)
+            {
+                visualEffect.gameObject.SetActive(true);
+                visualEffect.Stop();
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            var worldSpaceInput = new Vector3(inputHandler.GetInput.moveInput.x, 0, inputHandler.GetInput.moveInput.y);
+            if (worldSpaceInput.magnitude > 0.01f)
+            {
+                _lastMovementInput = worldSpaceInput;
+            }
+            
+            var angle = Vector3.Angle(_lastMovementInput, meshRoot.forward);
+            var weightedForce = forceByAngleCurve.Evaluate(angle);
+            
+            _rigidbody.AddForce(weightedForce * moveForceScalar * worldSpaceInput);
+        }
+
+        private void Update()
+        {
+            var targetRotation = Quaternion.identity;
+            if (_lastMovementInput != Vector3.zero)
+            {
+                targetRotation = Quaternion.LookRotation(_lastMovementInput);
+            }
+            
+            var newRotation = Quaternion.Slerp(meshRoot.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            meshRoot.transform.position = transform.position + meshOffset;
+            meshRoot.transform.SetPositionAndRotation(transform.position + meshOffset, newRotation);
+            
+            var angle = Vector3.Angle(_lastMovementInput, meshRoot.forward);
+            foreach (var visualEffect in smokeVfx)
+            {
+                if (angle >= smokeAngleThreshold && _rigidbody.linearVelocity.magnitude >= smokeSpeedThreshold)
+                {
+                    visualEffect.Play();
+                }
+                else
+                {
+                    visualEffect.Stop();
+                }
+            }
+        }
+        
+    }
+    
+}
