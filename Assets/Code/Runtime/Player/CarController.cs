@@ -78,7 +78,7 @@ namespace Adam.Runtime.Player
             meshRoot.transform.position = transform.position + meshOffset;
             meshRoot.transform.SetPositionAndRotation(transform.position + meshOffset, newRotation);
             
-            var angle = Vector3.Angle(_lastMovementInput, meshRoot.forward);
+            var angle = Vector3.Angle(_rigidbody.linearVelocity, meshRoot.forward);
             foreach (var visualEffect in smokeVfx)
             {
                 if (angle >= smokeAngleThreshold && _rigidbody.linearVelocity.magnitude >= smokeSpeedThreshold)
