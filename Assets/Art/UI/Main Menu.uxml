@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; margin-top: 64px; margin-right: 64px; margin-bottom: 64px; margin-left: 64px; width: 360px; justify-content: center;">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:Image source="project://database/Assets/Art/UI/logo.svg?fileID=7388822144124034973&amp;guid=24f3fa23d34fb8c41b73af098d5e24cc&amp;type=3#logo" name="Image" style="align-items: flex-start; align-self: flex-start; width: 360px; height: 141px;"/>
+            <ui:VisualElement style="flex-grow: 1; margin-top: 16px;">
+                <ui:Button text="Play" name="start" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Gliker-Bold.ttf?fileID=12800000&amp;guid=1a07e066190a6e94c8cb5a7c04eb5424&amp;type=3#Gliker-Bold&quot;); font-size: 18px; border-top-left-radius: 24px; border-top-right-radius: 24px; border-bottom-right-radius: 24px; border-bottom-left-radius: 24px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgb(255, 255, 255);"/>
+                <ui:Button text="Quit to Desktop" name="quit" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Gliker-Bold.ttf?fileID=12800000&amp;guid=1a07e066190a6e94c8cb5a7c04eb5424&amp;type=3#Gliker-Bold&quot;); font-size: 18px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 24px; border-top-right-radius: 24px; border-bottom-right-radius: 24px; border-bottom-left-radius: 24px; background-color: rgb(27, 27, 27); margin-top: 8px; color: rgba(255, 255, 255, 0.67);"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="By Adam Englishby" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Gliker-Bold.ttf?fileID=12800000&amp;guid=1a07e066190a6e94c8cb5a7c04eb5424&amp;type=3#Gliker-Bold&quot;); font-size: 18px; color: rgb(255, 255, 255); padding-bottom: 2px; margin-bottom: 0; padding-top: 2px; margin-top: 0;"/>
+        <ui:Label text="Music by Rafino Miguel" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Gliker-Bold.ttf?fileID=12800000&amp;guid=1a07e066190a6e94c8cb5a7c04eb5424&amp;type=3#Gliker-Bold&quot;); font-size: 18px; color: rgb(255, 255, 255); margin-top: 0; padding-top: 2px; padding-bottom: 2px; margin-bottom: 0;"/>
+        <ui:Label text="Featuring assets from Kenney.nl" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Gliker-Bold.ttf?fileID=12800000&amp;guid=1a07e066190a6e94c8cb5a7c04eb5424&amp;type=3#Gliker-Bold&quot;); font-size: 14px; color: rgb(255, 255, 255);"/>
+    </ui:VisualElement>
+</ui:UXML>

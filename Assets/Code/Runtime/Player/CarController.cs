@@ -11,7 +11,7 @@ namespace Adam.Runtime.Player
     public class CarController : MonoBehaviour
     {
 
-        [SerializeField] private InputHandler inputHandler;
+        [SerializeField] public InputHandler inputHandler;
         [SerializeField] private Transform meshRoot;
         [SerializeField] private List<VisualEffect> smokeVfx;
         

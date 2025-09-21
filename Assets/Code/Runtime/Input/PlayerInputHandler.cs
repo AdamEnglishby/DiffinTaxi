@@ -15,8 +15,11 @@ namespace Adam.Runtime.Input
             input.cam = cam;
         }
 
-        public void OnMove(InputValue value) => input.moveInput = value.Get<Vector2>();
-
+        public void OnMove(InputValue value)
+        {
+            input.moveInput = value.Get<Vector2>();
+            Invoke();
+        }
     }
     
 }

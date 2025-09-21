@@ -17,6 +17,7 @@ namespace Adam.Runtime
         [SerializeField] private float scoreMultiplier = 1500f;
         [SerializeField] private float driftMultiplier = 3000f;
         [SerializeField] private float scorePerCone = 10000f;
+        [SerializeField] private UIDocument endScreen;
         
         private UIDocument _document;
         private bool _drifting, _started;
@@ -36,12 +37,24 @@ namespace Adam.Runtime
             carController.OnDriftStart += OnDriftStart;
             carController.OnDriftEnd += OnDriftEnd;
             carController.OnConeHit += OnConeHit;
+
+            carController.inputHandler.OnInput += () =>
+            {
+                if (!_started) StartGame();
+            };
         }
 
-        public void StartGame()
+        private void StartGame()
         {
             _started = true;
             _currentTime = totalTimerSeconds;
+        }
+
+        private void EndGame()
+        {
+            if(!_started) return;
+            endScreen.rootVisualElement.Q<VisualElement>("container").style.opacity = 1;
+            Time.timeScale = 0;
         }
 
         private void OnConeHit(Cone cone)
@@ -93,8 +106,7 @@ namespace Adam.Runtime
         {
             if (_currentTime <= 0)
             {
-                Debug.Log("Game finished");
-                // TODO: end game
+                EndGame();
             }
         }
 

@@ -1,14 +1,14 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"/>
     <ui:VisualElement style="flex-grow: 1; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-        <ui:Image source="project://database/Assets/Art/UI/drift-hud.svg?fileID=7388822144124034973&amp;guid=3a9cf03c2f9e8c04ea4fe9bbe9080057&amp;type=3#drift-hud" style="position: absolute; right: 16px; top: 16px; width: 155px; height: 60px;"/>
+        <ui:Image source="project://database/Assets/Art/UI/drift-icon.png?fileID=2800000&amp;guid=184e83df228b0214095e958c52588786&amp;type=3#drift-icon" style="position: absolute; right: 16px; top: 16px; width: 155px; height: 60px;"/>
         <ui:Label text="305,745" name="drift" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Alien%20Ravager%20Italic.otf?fileID=12800000&amp;guid=4f140338fe35b1e42ae6a6639bcbc55e&amp;type=3#Alien Ravager Italic&quot;); font-size: 76px; -unity-text-align: upper-right; position: absolute; right: 165px; top: 2px; color: rgb(255, 208, 51); width: 910px;"/>
     </ui:VisualElement>
     <ui:VisualElement style="flex-grow: 1; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-        <ui:Image source="project://database/Assets/Art/UI/score-hud.svg?fileID=7388822144124034973&amp;guid=9155305ee77824240afcaa1667a69b3d&amp;type=3#score-hud" style="position: absolute; right: 16px; bottom: 16px;"/>
-        <ui:Label text="305,745,262" name="score" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Alien%20Ravager%20Italic.otf?fileID=12800000&amp;guid=4f140338fe35b1e42ae6a6639bcbc55e&amp;type=3#Alien Ravager Italic&quot;); font-size: 59px; -unity-text-align: upper-right; position: absolute; color: rgb(255, 255, 255); bottom: -5px; right: 99px; width: 1162px;"/>
+        <ui:Image source="project://database/Assets/Art/UI/score-icon.png?fileID=2800000&amp;guid=97743b50f54e0f6419758e2813bc7bf0&amp;type=3#score-icon" style="position: absolute; right: 16px; bottom: 16px; height: 43px; width: 90px;"/>
+        <ui:Label text="305,745,262" name="score" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Alien%20Ravager%20Italic.otf?fileID=12800000&amp;guid=4f140338fe35b1e42ae6a6639bcbc55e&amp;type=3#Alien Ravager Italic&quot;); font-size: 59px; -unity-text-align: upper-right; position: absolute; color: rgb(255, 208, 51); bottom: -5px; right: 99px; width: 1162px;"/>
     </ui:VisualElement>
     <ui:VisualElement style="flex-grow: 1;">
-        <ui:Label text="2:00" name="timer" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Alien%20Ravager%20Italic.otf?fileID=12800000&amp;guid=4f140338fe35b1e42ae6a6639bcbc55e&amp;type=3#Alien Ravager Italic&quot;); font-size: 59px; position: absolute; left: 16px; top: 16px; color: rgb(255, 255, 255); width: 230px;"/>
+        <ui:Label text="2:00" name="timer" style="-unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Alien%20Ravager%20Italic.otf?fileID=12800000&amp;guid=4f140338fe35b1e42ae6a6639bcbc55e&amp;type=3#Alien Ravager Italic&quot;); font-size: 59px; position: absolute; left: 16px; top: 16px; color: rgb(255, 208, 51); width: 230px;"/>
     </ui:VisualElement>
 </ui:UXML>

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.85); opacity: 0;">
+        <ui:VisualElement style="flex-grow: 1; margin-top: 64px; margin-right: 64px; margin-bottom: 64px; margin-left: 64px;">
+            <ui:Label text="Time&#39;s Up" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Gliker-Bold.ttf?fileID=12800000&amp;guid=1a07e066190a6e94c8cb5a7c04eb5424&amp;type=3#Gliker-Bold&quot;); font-size: 48px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
