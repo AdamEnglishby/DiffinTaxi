@@ -46,16 +46,23 @@ namespace Adam.Editor.Level
                     selectedEdge = edge;
                 }
                 
-                var middleLeft = new Rect(middleRect.position.x, middleRect.position.y, middleRect.width / 2f, middleRect.height);
-                var middleRight = new Rect(middleRect.position.x + middleRect.width / 2f, middleRect.position.y, middleRect.width / 2f, middleRect.height);
+                var middleLeftRect = new Rect(middleRect.position.x, middleRect.position.y, middleRect.width / 3f, middleRect.height);
+                var middleCentreRect = new Rect(middleRect.position.x + middleRect.width / 3f, middleRect.position.y, middleRect.width / 3f, middleRect.height);
+                var middleRightRect = new Rect(middleRect.position.x + middleRect.width * 2 / 3f, middleRect.position.y, middleRect.width / 3f, middleRect.height);
                 
-                if (GUI.Button(middleLeft, "╣"))
+                if (GUI.Button(middleLeftRect, "╣"))
                 {
                     selectedKey = roadComponent.tLeft;
                     selectedEdge = edge;
                 }
                 
-                if (GUI.Button(middleRight, "╠"))
+                if (GUI.Button(middleCentreRect, "╦"))
+                {
+                    selectedKey = roadComponent.tCentre;
+                    selectedEdge = edge;
+                }
+                
+                if (GUI.Button(middleRightRect, "╠"))
                 {
                     selectedKey = roadComponent.tRight;
                     selectedEdge = edge;
@@ -89,12 +96,12 @@ namespace Adam.Editor.Level
             if (selectedKey == "" || !selectedEdge) return;
             
             SceneView.duringSceneGui -= SceneViewGUI;
-            _ = Instantiate(selectedKey, selectedEdge);
+            _ = Instantiate(selectedKey, selectedEdge, roadComponent);
 
         }
         
 
-        private async Task Instantiate(string key, Transform selectedEdge)
+        private async Task Instantiate(string key, Transform selectedEdge, RoadComponent oldRoadComponent)
         {
             var handle = Addressables.LoadAssetAsync<GameObject>(key);
             await handle.Task;
@@ -107,23 +114,25 @@ namespace Adam.Editor.Level
             }
 
             var prefab = handle.Result;
-            var o = (GameObject)PrefabUtility.InstantiatePrefab(prefab, selectedEdge.transform.parent.parent);
+            var o = (GameObject) PrefabUtility.InstantiatePrefab(prefab, selectedEdge.transform.parent.parent);
             
             Undo.RegisterCreatedObjectUndo(o, o.name);
-            
-            o.transform.position = selectedEdge.transform.position;
-            o.transform.rotation = selectedEdge.transform.rotation;
-            
-            var correspondingEdge = o.GetComponent<RoadComponent>().entryEdge; // TODO: how can we find the correct edge every time, instead of assuming #0?
-            var offset = correspondingEdge.transform.position - selectedEdge.transform.position;
-            o.transform.position = selectedEdge.transform.position - offset;
-            
             Addressables.Release(handle);
             
-            EditorApplication.delayCall += () =>
+            var newRoadComponent = o.GetComponent<RoadComponent>();
+            if (newRoadComponent && newRoadComponent.entryEdge)
             {
-                Selection.SetActiveObjectWithContext(o, null);
-            };
+                var entryEdge = newRoadComponent.entryEdge;
+                
+                var targetRotation = selectedEdge.rotation;
+                o.transform.rotation = targetRotation * Quaternion.Inverse(entryEdge.rotation);
+
+                var worldSpaceOffset = entryEdge.position - o.transform.position;
+                o.transform.position = selectedEdge.position - worldSpaceOffset;
+            }
+            
+            Selection.SetActiveObjectWithContext(o, null);
+            SceneView.RepaintAll(); 
         }
 
     }

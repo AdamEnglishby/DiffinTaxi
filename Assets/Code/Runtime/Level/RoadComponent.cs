@@ -9,7 +9,7 @@ namespace Adam.Runtime.Level
 
         [SerializeField] public Transform entryEdge;
         [SerializeField] public List<Transform> exitEdges;
-        [SerializeField] public string crossSection, tLeft, tRight, left, straight, right;
+        [SerializeField] public string crossSection, tLeft, tCentre, tRight, left, straight, right;
 
     }
     

@@ -26,6 +26,8 @@ namespace Adam.Runtime.Player
         private Rigidbody _rigidbody;
         private Vector3 _lastMovementInput;
 
+        public Rigidbody RigidbodyReference => _rigidbody;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();

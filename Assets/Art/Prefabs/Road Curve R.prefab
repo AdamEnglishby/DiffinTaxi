@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3860230737731729155}
   m_Layer: 0
-  m_Name: Edge
+  m_Name: Entry Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2660688475831412116}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 235519859718342958}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3779339606867908873
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987235069089581921}
   m_Layer: 0
-  m_Name: Edge (1)
+  m_Name: Exit Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,13 +55,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3779339606867908873}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071048, z: -0, w: 0.70710886}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.5, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 235519859718342958}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &6850474242709715551
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,8 +115,9 @@ MonoBehaviour:
   exitEdges:
   - {fileID: 1987235069089581921}
   crossSection: 
-  tLeft: 
-  tRight: 
+  tLeft: Road T L
+  tCentre: Road T Centre
+  tRight: Road T R
   left: Road Curve L
   straight: Road Straight
   right: Road Curve R
