@@ -14,13 +14,13 @@ namespace Adam.Runtime.Player
         [SerializeField] private Transform meshRoot;
         [SerializeField] private List<VisualEffect> smokeVfx;
         
-        [SerializeField] private float moveForceScalar = 15f;
-        [SerializeField] private float maxSpeed = 10f;
-        [SerializeField] private float rotationSpeed = 10f;
+        [SerializeField] private float moveForceScalar = 10f;
+        [SerializeField] private float maxSpeed = 20f;
+        [SerializeField] private float rotationSpeed = 30f;
         [SerializeField] private Vector3 meshOffset = new(0, -0.5f, 0);
         [SerializeField] private AnimationCurve forceByAngleCurve;
-        [SerializeField] private float smokeAngleThreshold = 10f;
-        [SerializeField] private float smokeSpeedThreshold;
+        [SerializeField] private float smokeAngleThreshold = 45f;
+        [SerializeField] private float smokeSpeedThreshold = 1f;
         [SerializeField] private VisualEffect exhaustVfx;
 
         private Rigidbody _rigidbody;

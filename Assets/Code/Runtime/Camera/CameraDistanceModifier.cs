@@ -12,18 +12,26 @@ namespace Adam.Runtime.Code.Runtime.Camera
 
         [SerializeField] private CarController carController;
         [SerializeField] private AnimationCurve velocityDistanceCurve;
+        [SerializeField] private AnimationCurve velocityNoiseCurve;
+        [SerializeField] private float adjustmentSpeed = 15f;
 
         private CinemachineCamera _cinemachineCamera;
+        private CinemachineBasicMultiChannelPerlin _noise;
 
         private void Awake()
         {
             _cinemachineCamera = GetComponent<CinemachineCamera>();
+            _noise = _cinemachineCamera.GetCinemachineComponent(CinemachineCore.Stage.Noise) as CinemachineBasicMultiChannelPerlin;
         }
 
         private void LateUpdate()
         {
-            var distance = velocityDistanceCurve.Evaluate(carController.RigidbodyReference.linearVelocity.magnitude);
-            Debug.Log(distance);
+            var velocity = carController.RigidbodyReference.linearVelocity.magnitude;
+            var distance = velocityDistanceCurve.Evaluate(velocity);
+            var target = Mathf.Lerp(_cinemachineCamera.Lens.OrthographicSize, distance, Time.deltaTime * adjustmentSpeed);
+            _cinemachineCamera.Lens.OrthographicSize = target;
+
+            _noise.AmplitudeGain = Mathf.Lerp(_noise.AmplitudeGain, velocityNoiseCurve.Evaluate(velocity), Time.deltaTime * adjustmentSpeed);
         }
         
     }

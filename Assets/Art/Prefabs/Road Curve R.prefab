@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 235519859718342958}
   - component: {fileID: 3088253579045963247}
+  - component: {fileID: 570970865952655979}
   m_Layer: 0
   m_Name: Road Curve R
   m_TagString: Untagged
@@ -121,6 +122,26 @@ MonoBehaviour:
   left: Road Curve L
   straight: Road Straight
   right: Road Curve R
+--- !u!114 &570970865952655979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850474242709715551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &2044518153175018437
 PrefabInstance:
   m_ObjectHideFlags: 0
