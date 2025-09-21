@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Adam.Runtime.Input;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -25,8 +26,13 @@ namespace Adam.Runtime.Player
 
         private Rigidbody _rigidbody;
         private Vector3 _lastMovementInput;
+        private bool _drifting;
 
         public Rigidbody RigidbodyReference => _rigidbody;
+
+        public event Action OnDriftStart;
+        public event Action OnDriftEnd;
+        public event Action<Cone> OnConeHit;
 
         private void Awake()
         {
@@ -39,6 +45,22 @@ namespace Adam.Runtime.Player
                 visualEffect.Stop();
             }
             exhaustVfx.gameObject.SetActive(true);
+
+            OnDriftStart += () =>
+            {
+                foreach (var visualEffect in smokeVfx)
+                {
+                    visualEffect.Play();
+                }
+            };
+            
+            OnDriftEnd += () =>
+            {
+                foreach (var visualEffect in smokeVfx)
+                {
+                    visualEffect.Stop();
+                }
+            };
         }
 
         private void FixedUpdate()
@@ -81,16 +103,25 @@ namespace Adam.Runtime.Player
             meshRoot.transform.SetPositionAndRotation(transform.position + meshOffset, newRotation);
             
             var angle = Vector3.Angle(_rigidbody.linearVelocity, meshRoot.forward);
-            foreach (var visualEffect in smokeVfx)
+            if (angle >= smokeAngleThreshold && _rigidbody.linearVelocity.magnitude >= smokeSpeedThreshold)
             {
-                if (angle >= smokeAngleThreshold && _rigidbody.linearVelocity.magnitude >= smokeSpeedThreshold)
-                {
-                    visualEffect.Play();
-                }
-                else
-                {
-                    visualEffect.Stop();
-                }
+                if (_drifting) return;
+                _drifting = true;
+                OnDriftStart?.Invoke();
+            }
+            else
+            {
+                if (!_drifting) return;
+                _drifting = false;
+                OnDriftEnd?.Invoke();
+            }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Cone"))
+            {
+                OnConeHit?.Invoke(other.gameObject.GetComponent<Cone>());
             }
         }
         
